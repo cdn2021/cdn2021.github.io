@@ -25,7 +25,6 @@ function loadcanvas(){
 		main();
 		sessionStorage.setItem('paintcanvas',true);
 	}
-	document.getElementById("mainbox").style = "";
 }
 </script>
 </head>
@@ -33,7 +32,7 @@ function loadcanvas(){
 <input type=button onclick=javascript:loadcanvas(); value='Full Screen'><br>
 	<div id=canvas-box>
 	</div>
-	<div style='display:none' id=mainbox>
+	<div id=mainbox>
 		<pre style='font-family:Cursive,Helvetica,sans-serif;white-space:pre-wrap'>
 		<pre id=login-title class=translate style='position:relative;height:-50%;color:white;background:black;font-size:3em'>Galactic Empire</pre>
 		<div id=login-box style='position:relative;color:white;background:black;height:-40%;font-size:1.5em'>
