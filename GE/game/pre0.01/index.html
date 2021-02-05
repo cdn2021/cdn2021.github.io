@@ -14,7 +14,12 @@
 <script>
 sessionStorage.removeItem("paintcanvas");
 function loadcanvas(){
-	document.body.requestFullscreen();
+	try {
+		document.body.requestFullscreen();
+	} catch (err) {
+		alert("Error:" + err);
+		console.log(err);
+	}
 	if (sessionStorage.getItem('paintcanvas') == null)
 	{
 		main();
