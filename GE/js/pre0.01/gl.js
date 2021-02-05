@@ -4,7 +4,7 @@ function main() {
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth,window.innerHeight);
 	document.body.appendChild(renderer.domElement);
-	var geometry = new THREE.CubeGeometry(3,3,3);
+	var geometry = new THREE.CubeGeometry(1,1,1);
 	var texture = THREE.ImageUtils.loadTexture("https://cdn2021.github.io/GE/img/earth.bmp",null,function(t){
 		
 	});
