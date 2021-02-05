@@ -32,7 +32,7 @@ function reg()
     alert("The username or password should be between 8 and 16 letters long");
     return;
   }
-  if (username.indexOf(password) != -1 || password.indexOf(username))
+  if (username.indexOf(password) != -1 || password.indexOf(username) != -1)
   {
     alert("The user name should not contain a password, or the user name should be part of the password");
     return;
