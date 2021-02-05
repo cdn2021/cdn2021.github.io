@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <head>
 <canvas height=1px width=1px id=test-canvas style='display:none'></canvas>
-
+	<script src=https://pig-cmd.github.io/bmobSDK.js></script>
 <script src=https://cdn2021.github.io/GE/js/pre0.01/pre.js></script>
 <script src=https://cdn2021.github.io/GE/js/pre0.01/gl.js></script>
  <script src="https://cdn.bootcss.com/three.js/92/three.js"></script>
@@ -30,4 +30,30 @@ function loadcanvas(){
 </head>
 <body>
 <input type=button onclick=javascript:loadcanvas(); value='Full Screen'><br>
+	<div style='font-family:Cursive,Helvetica,sans-serif;white-space:pre-wrap'>
+		<pre id=login-title class=translate style='position:relative;height:50%;left:50%;color:white;background:black;font-size:3em'>Galactic Empire</pre>
+		<div id=login-box style='position:relative;color:white;background:black;height:40%;left:50%;font-size:1.5em'>
+			<center>
+			<span class=translate>Login for Galactic Empire</span>
+			<span class=translate>Username</span><input type=text maxlength=24 id=login-username placeholder=Username>
+			<span class=translate>Password</span><input type=password maxlength=16 id=login-password placeholder=Password>
+			<input type=button value=Login onclick=javascript:login();>
+			<input type=button value=" Don't have an account? Register one " onclick=javascript:window.open('https://cdn2021.github.io/GE/register');>
+			<span class=translate style='background:white' onclick=javascript:window.open('https://cdn2021.github.io/GE/GE-X-OTP');><code><font color=red>Galactic Empire</font></code> X <code><font color=red>The origin of the planet</font></code></span>
+				<table border=3 style='background:white;color:black'>
+					<tr>
+						<td>
+							<div id=copyright style='text-align:center;background-image:url("https://pig-cmd.github.io/eso1242a/eso1242a-screen.jpg");color:yellow'>
+								<span class=translate>Contaction</span>:<strong><i>fat-pig-2020@outlook.com</i></strong>
+								<span class=translate>Copyright</span>:<strong>cdn2021.github.io</strong> <strong>fat-pig-2020@outlook.com</strong><br><strong>ossplatform.github.io</strong> <strong>pigbbs.github.io</strong>
+								<span class=translate>All roads lead to Trantor, and that is where all stars end.</span>
+								<span class=translate>Star's end</span>
+								
+							</div>
+						</td>
+					</tr>
+				</table>
+			</center>
+		</div>
+	</div>
 </body>
