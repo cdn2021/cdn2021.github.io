@@ -3,7 +3,7 @@ function main() {
 	var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth,window.innerHeight);
-	document.body.appendChild(renderer.domElement);
+	document.getElementById("canvas-box").appendChild(renderer.domElement);
 	var geometry = new THREE.CubeGeometry(1,1,1);
 	var texture = THREE.ImageUtils.loadTexture("https://cdn2021.github.io/GE/img/earth.bmp",null,function(t){
 		
