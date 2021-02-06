@@ -27,8 +27,14 @@ function main() {
 		camera.position.z = Number(sessionStorage.getItem("camera-z"));
 		renderer.render(scene,camera);
 	}
-	
 	render();
+	if (sessionStorage.getItem("loginstatus") == "ok")
+	{
+	} else 
+	{
+		alert("Please login first.");
+		location.reload();
+	}
 	setInterval(function(){
 		if (sessionStorage.getItem("loginstatus") == "ok")
 		{
