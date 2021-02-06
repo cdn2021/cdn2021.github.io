@@ -26,6 +26,9 @@ function main() {
 		camera.position.x = Number(sessionStorage.getItem("camera-x"));
 		camera.position.y = Number(sessionStorage.getItem("camera-y"));
 		camera.position.z = Number(sessionStorage.getItem("camera-z"));
+		localStorage.setItem("camera-x",camera.position.x);
+		localStorage.setItem("camera-y",camera.position.y);
+		localStorage.setItem("camera-z",camera.position.z);
 		document.getElementById("coordinate").innerHTML = "Coordinate:" + camera.position.x + "," + camera.position.y + "," + camera.position.z;
 		renderer.render(scene,camera);
 	}
