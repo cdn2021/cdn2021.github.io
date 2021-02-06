@@ -42,6 +42,6 @@ function keypress(event)
 	console.log(code);
 	var code = event.keycode;
 	var table = sessionStorage.getItem("key");
-	if (parseInt(table.w) == code))
+	if (parseInt(table.w) == code)
 		sessionStorage.setItem("camera-z",parseInt(sessionStorage.getItem("camera-z")) + 1);
 }
