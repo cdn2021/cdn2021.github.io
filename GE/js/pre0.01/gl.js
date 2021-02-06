@@ -37,7 +37,7 @@ function main() {
 	},200);
 }
 
-function keypress(event)
+document.getElementById("mainbox").onkeydown = function(event)
 {
 	console.log(event);
 	var code = event.keycode;
