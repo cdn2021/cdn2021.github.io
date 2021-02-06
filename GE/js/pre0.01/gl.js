@@ -23,9 +23,12 @@ function main() {
 	render();
 }
 setInterval(function(){
-	document.getElementById("login-title").innerHTML = "";
-	document.getElementById("login-box").innerHTML = "";
-	loadgame();
+	if (sessionStorage.getItem("loginstatus") == "ok")
+	{
+		document.getElementById("login-title").innerHTML = "";
+		document.getElementById("login-box").innerHTML = "";
+		loadgame();
+	}
 },200);
 function loadgame()
 {
