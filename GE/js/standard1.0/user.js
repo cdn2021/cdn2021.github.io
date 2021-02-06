@@ -54,8 +54,8 @@ function reg()
   let userinfo = {};
   userinfo.username = username;
   userinfo.password = password;
-  userinfo.phone = Math.random.substring(3,14);
-  userinfo.email = "example" + Math.random.substring(2) + "@outlook.com";
+  userinfo.phone = Math.random().toString().substring(3,14);
+  userinfo.email = "example" + Math.random().toString().substring(2) + "@outlook.com";
   Bmob.User.register(userinfo).then(res => {
       console.log(res);
       var result = JSON.stringify(res);
