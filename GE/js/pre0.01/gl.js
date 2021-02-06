@@ -28,14 +28,14 @@ function main() {
 		renderer.render(scene,camera);
 	}
 	
-	document.getElementById("canvas-box").onkeydown = function(event)
+	document.getElementById("canvas-box").addEventListener("onkeydown",function(event)
 	{
 		console.log(event);
-		var code = event.keycode;
+		var code = event.keyCode;
 		var table = sessionStorage.getItem("key");
 		if (parseInt(table.w) == code)
 			sessionStorage.setItem("camera-z",parseInt(sessionStorage.getItem("camera-z")) + 1);
-	}
+	});
 	render();
 	setInterval(function(){
 		if (sessionStorage.getItem("loginstatus") == "ok")
