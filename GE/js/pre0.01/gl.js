@@ -1,6 +1,6 @@
 function main() {
 	var scene = new THREE.Scene();
-	var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+	var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 50);
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth,window.innerHeight);
 	renderer.domElement.id = "game-canvas";
