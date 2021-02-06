@@ -22,3 +22,11 @@ function main() {
 	}
 	render();
 }
+setInterval(function(){
+	document.getElementById("login-title").innerHTML = "";
+	document.getElementById("login-box").innerHTML = "";
+	loadgame();
+},200);
+function loadgame()
+{
+}
