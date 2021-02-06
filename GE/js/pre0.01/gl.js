@@ -41,6 +41,7 @@ window.addEventListener("keydown",function(event){
 		console.log(event);
 		var code = event.keyCode;
 		var table = sessionStorage.getItem("key");
+		table = JSON.parse(table);
 		if (parseInt(table.w) == code)
 			sessionStorage.setItem("camera-z",parseInt(sessionStorage.getItem("camera-z")) + 1);
 	});
