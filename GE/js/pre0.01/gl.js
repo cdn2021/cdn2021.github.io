@@ -28,7 +28,7 @@ function main() {
 		renderer.render(scene,camera);
 	}
 	
-	document.getElementById("canvas-box").addEventListener("keydown",function(event)
+	window.addEventListener("keydown",function(event)
 	{
 		console.log(event);
 		var code = event.keyCode;
