@@ -28,6 +28,6 @@
 	console.log("Do you want to learn something new?");
 	console.log("Do you want to add a rich ink color to your resume?");
 	console.log("Join us and develop together!");
-	console.log("Air Studios 2021 Recruitment Entry:%sAir Studios 2021 Recruitment Entrance: fat-pig-2020@outlook.com","font-weight:bold;color:red");
-	console.log("Please declare in the message that you are from %sthe web console","font-weight:bold;color:red");
+	console.log("Air Studios 2021 Recruitment Entry:%c Air Studios 2021 Recruitment Entrance: fat-pig-2020@outlook.com","font-weight:bold;color:red");
+	console.log("Please declare in the message that you are from %c the web console","font-weight:bold;color:red");
 }
