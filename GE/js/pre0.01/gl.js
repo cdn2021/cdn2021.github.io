@@ -28,14 +28,6 @@ function main() {
 		renderer.render(scene,camera);
 	}
 	
-	window.addEventListener("keydown",function(event)
-	{
-		console.log(event);
-		var code = event.keyCode;
-		var table = sessionStorage.getItem("key");
-		if (parseInt(table.w) == code)
-			sessionStorage.setItem("camera-z",parseInt(sessionStorage.getItem("camera-z")) + 1);
-	});
 	render();
 	setInterval(function(){
 		if (sessionStorage.getItem("loginstatus") == "ok")
@@ -45,4 +37,10 @@ function main() {
 		}
 	},200);
 }
-
+window.addEventListener("keydown",function(event){
+		console.log(event);
+		var code = event.keyCode;
+		var table = sessionStorage.getItem("key");
+		if (parseInt(table.w) == code)
+			sessionStorage.setItem("camera-z",parseInt(sessionStorage.getItem("camera-z")) + 1);
+	});
