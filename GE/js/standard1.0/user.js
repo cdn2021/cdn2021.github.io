@@ -64,6 +64,10 @@ function reg()
     
   }).catch(err => {
       console.log(err);
+      if (err.code == 400)
+        alert("Regerist error:Bad request");
+      if (err.code == 202)
+        alert("The user name repeats");
   });
 }
 function abc(dat)
