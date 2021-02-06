@@ -39,7 +39,7 @@ function main() {
 
 function keypress(event)
 {
-	console.log(code);
+	console.log(event);
 	var code = event.keycode;
 	var table = sessionStorage.getItem("key");
 	if (parseInt(table.w) == code)
