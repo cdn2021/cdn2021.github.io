@@ -12,6 +12,7 @@ function login()
     db.newtable("info",1,"user","id","console.log");
     db.add("info",1,"user",{"id":1,"info":result},"console.log");
     sessionStorage.setItem("loginstatus","ok");
+    alert("The login was successful.");
    }).catch(err => {
     console.log(err);
     if (err.code == 101)
