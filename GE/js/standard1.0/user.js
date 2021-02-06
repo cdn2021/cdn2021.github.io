@@ -54,8 +54,8 @@ function reg()
   let userinfo = {};
   userinfo.username = username;
   userinfo.password = password;
-  userinfo.phone = 0;
-  userinfo.email = "example@outlook.com";
+  userinfo.phone = Math.random.substring(3,14);
+  userinfo.email = "example" + Math.random.substring(2) + "@outlook.com";
   Bmob.User.register(userinfo).then(res => {
       console.log(res);
       var result = JSON.stringify(res);
@@ -69,6 +69,8 @@ function reg()
         alert("Regerist error:Bad request");
       if (err.code == 202)
         alert("The user name repeats");
+      if (err.code == 203)
+        reg();
   });
 }
 function abc(dat)
