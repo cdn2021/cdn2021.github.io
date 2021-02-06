@@ -4,6 +4,7 @@ function main() {
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth,window.innerHeight);
 	renderer.domElement.id = "game-canvas";
+	renderer.domElement.style = "z-index:-1";
 	document.getElementById("canvas-box").appendChild(renderer.domElement);
 	var geometry = new THREE.CubeGeometry(1,1,1);
 	var texture = THREE.ImageUtils.loadTexture("https://cdn2021.github.io/GE/img/earth.bmp",null,function(t){
