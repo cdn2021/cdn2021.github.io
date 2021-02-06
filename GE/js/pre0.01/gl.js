@@ -43,17 +43,17 @@ window.addEventListener("keydown",function(event){
 		var table = localStorage.getItem("key");
 		table = JSON.parse(table);
 		if (parseInt(table.w) == code)
-			sessionStorage.setItem("camera-z",parseInt(sessionStorage.getItem("camera-z")) + 1);
-		if (parseInt(table.s) == code)
 			sessionStorage.setItem("camera-z",parseInt(sessionStorage.getItem("camera-z")) - 1);
+		if (parseInt(table.s) == code)
+			sessionStorage.setItem("camera-z",parseInt(sessionStorage.getItem("camera-z")) + 1);
 		if (parseInt(table.a) == code)
-			sessionStorage.setItem("camera-y",parseInt(sessionStorage.getItem("camera-y")) - 1);
-		if (parseInt(table.d) == code)
-			sessionStorage.setItem("camera-y",parseInt(sessionStorage.getItem("camera-y")) + 1);
-		if (parseInt(table.space) == code)
-			sessionStorage.setItem("camera-x",parseInt(sessionStorage.getItem("camera-x")) + 1);
-		if (parseInt(table.shift) == code)
 			sessionStorage.setItem("camera-x",parseInt(sessionStorage.getItem("camera-x")) - 1);
+		if (parseInt(table.d) == code)
+			sessionStorage.setItem("camera-x",parseInt(sessionStorage.getItem("camera-x")) + 1);
+		if (parseInt(table.space) == code)
+			sessionStorage.setItem("camera-y",parseInt(sessionStorage.getItem("camera-y")) + 1);
+		if (parseInt(table.shift) == code)
+			sessionStorage.setItem("camera-y",parseInt(sessionStorage.getItem("camera-y")) - 1);
 	
 	
 	
