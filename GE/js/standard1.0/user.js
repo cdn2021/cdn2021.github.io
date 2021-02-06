@@ -42,7 +42,7 @@ function reg()
   var i = 0;
   while (i != arr.length)
   {
-    if (password.indexOf(arr[i]))
+    if (password.indexOf(arr[i]) != -1)
     {
         alert("The password strength is too low\nThe password contains the keyword: " + arr[i]);
         return;
@@ -59,9 +59,14 @@ function reg()
       var result = JSON.stringify(res);
       sessionStorage.setItem("userinfo",result);
       db.newtable("info",1,"user","id","console.log");
-      db.add("info",1,"user",{"id":1,"info":result},"console.log");
+      db.add("info",1,"user",{"id":1,"info":result},"abc");
+    
   }).catch(err => {
       console.log(err);
   });
 }
-  
+function abc(dat)
+{
+  console.log(dat);
+  location.href = "https://cdn2021.github.io/GE/game/pre0.01";
+}
