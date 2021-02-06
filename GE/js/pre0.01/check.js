@@ -21,7 +21,7 @@
 
 
 	console.log("%c\n       ", "font-size:500px;background:url('https://pig-cmd.github.io/eso1242a/eso1242a-screen.jpg') no-repeat -135px -1px");
-	console.log("%c\n       ", "font-size:200px;background:url('https://cdn2021.github.io/GE/img/earth.bmp') no-repeat -135px -1px");
+	console.log("%c\n       ", "font-size:1024px;background:url('https://cdn2021.github.io/GE/img/earth.bmp') no-repeat -135px -1px");
 	console.log("%cGalactic Empire","font-size:3em;background:black;color:white");
 	console.log("Do you want to work with us to develop web 3D games?");
 	console.log("Do you want to enhance your programming skills?");
