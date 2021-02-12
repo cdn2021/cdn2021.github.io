@@ -1,36 +1,51 @@
 function main() {
+        if (localStorage.getItem("camera-x") == null)
+		localStorage.setItem("camera-x",0);
+	if (localStorage.getItem("camera-y") == null)
+		localStorage.setItem("camera-y",0);
+	if (localStorage.getItem("camera-z") == null)
+		localStorage.setItem("camera-z",5);
+	//初始化摄像机坐标
 	var scene = new THREE.Scene();
-	var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 50);
+	//创建场景
+	var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 100);
+	//创建摄像机
 	var renderer = new THREE.WebGLRenderer();
+	//渲染器
 	renderer.setSize(window.innerWidth,window.innerHeight);
 	renderer.domElement.id = "game-canvas";
 	renderer.domElement.style = "z-index:-1";
 	document.getElementById("canvas-box").appendChild(renderer.domElement);
+	//添加canvas画布
 	var geometry = new THREE.CubeGeometry(1,1,1);
+	//创建新的立方体
 	var texture = THREE.ImageUtils.loadTexture("https://cdn2021.github.io/GE/img/earth.bmp",null,function(t){
 		
 	});
+	
 	var material = new THREE.MeshBasicMaterial({map:texture});
+	//设置立方体材质：地球
 	var cube = new THREE.Mesh(geometry,material);
-
+	//渲染立方体
 	scene.add(cube);
+	//添加立方体
 	camera.position.z = 5;
-	sessionStorage.setItem("camera-x",camera.position.x);
-	sessionStorage.setItem("camera-y",camera.position.y);
-	sessionStorage.setItem("camera-z",camera.position.z);
+	//摄像机坐标z设置为5
 	function render() {
 		requestAnimationFrame(render);
+		//重复执行此函数
 		cube.rotation.x += 0.01;
 		cube.rotation.y += 0.01;
 		cube.rotation.z += 0.01;
-		camera.position.x = Number(sessionStorage.getItem("camera-x"));
-		camera.position.y = Number(sessionStorage.getItem("camera-y"));
-		camera.position.z = Number(sessionStorage.getItem("camera-z"));
-		localStorage.setItem("camera-x",camera.position.x);
-		localStorage.setItem("camera-y",camera.position.y);
-		localStorage.setItem("camera-z",camera.position.z);
+		//立方体旋转
+		camera.position.x = Number(localStorage.getItem("camera-x"));
+		camera.position.y = Number(localStorage.getItem("camera-y"));
+		camera.position.z = Number(localStorage.getItem("camera-z"));
+		//取得摄像机坐标
 		document.getElementById("coordinate").innerHTML = "Coordinate:" + camera.position.x + "," + camera.position.y + "," + camera.position.z;
+		//显示摄像机坐标
 		renderer.render(scene,camera);
+		//渲染场景
 	}
 	render();
 	if (sessionStorage.getItem("loginstatus") == "ok")
@@ -40,33 +55,36 @@ function main() {
 		alert("Please login first.");
 		location.reload();
 	}
+	//判断是否登录
 	setInterval(function(){
 		if (sessionStorage.getItem("loginstatus") == "ok")
 		{
 			document.getElementById("login-title").innerHTML = "";
 			document.getElementById("login-box").innerHTML = "";
+			//如果登录了，登录信息设置为空
 		}
 	},200);
 }
 window.addEventListener("keydown",function(event){
 		console.log(event);
+		//窃听键盘事件
 		var code = event.keyCode;
 		var table = localStorage.getItem("key");
 		table = JSON.parse(table);
 		if (parseInt(table.w) == code)
-			sessionStorage.setItem("camera-z",parseInt(sessionStorage.getItem("camera-z")) - 1);
+			localStorage.setItem("camera-z",parseInt(localStorage.getItem("camera-z")) - 1);
 		if (parseInt(table.s) == code)
-			sessionStorage.setItem("camera-z",parseInt(sessionStorage.getItem("camera-z")) + 1);
+			localStorage.setItem("camera-z",parseInt(localStorage.getItem("camera-z")) + 1);
 		if (parseInt(table.a) == code)
-			sessionStorage.setItem("camera-x",parseInt(sessionStorage.getItem("camera-x")) - 1);
+			localStorage.setItem("camera-x",parseInt(localStorage.getItem("camera-x")) - 1);
 		if (parseInt(table.d) == code)
-			sessionStorage.setItem("camera-x",parseInt(sessionStorage.getItem("camera-x")) + 1);
+			localStorage.setItem("camera-x",parseInt(localStorage.getItem("camera-x")) + 1);
 		if (parseInt(table.space) == code)
-			sessionStorage.setItem("camera-y",parseInt(sessionStorage.getItem("camera-y")) + 1);
+			localStorage.setItem("camera-y",parseInt(localStorage.getItem("camera-y")) + 1);
 		if (parseInt(table.shift) == code)
-			sessionStorage.setItem("camera-y",parseInt(sessionStorage.getItem("camera-y")) - 1);
+			localStorage.setItem("camera-y",parseInt(localStorage.getItem("camera-y")) - 1);
 	
-	
+		//玩家移动检查
 	
 	
 	
