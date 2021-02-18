@@ -9,6 +9,8 @@ function main() {
 	document.getElementById("img-memu").className = "show-element";
 	//设置菜单可见
 	document.getElementById("health-progress").className = "show-element";
+	document.getElementById("health-word").className = "show-element";
+	//设置血条可见
 	var scene = new THREE.Scene();
 	//创建场景
 	var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 100);
@@ -66,7 +68,8 @@ function main() {
 			document.getElementById("login-box").innerHTML = "";
 			//如果登录了，登录信息设置为空
 		}
-		document.getElementById("health-progress").value = parseInt(sessionStorage.getItem("health"));
+		document.getElementById("health-progress").style.width = parseInt(sessionStorage.getItem("health")) / 1920 * 100;
+		document.getElementById("health-word").innerHTML = sessionStorage.getItem("health") + "/1920";
 		//显示玩家血条
 	},200);
 }
