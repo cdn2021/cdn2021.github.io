@@ -8,6 +8,7 @@ function main() {
 	//初始化摄像机坐标
 	document.getElementById("img-memu").className = "show-element";
 	//设置菜单可见
+	document.getElementById("health-progress").className = "show-element";
 	var scene = new THREE.Scene();
 	//创建场景
 	var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 100);
@@ -65,6 +66,8 @@ function main() {
 			document.getElementById("login-box").innerHTML = "";
 			//如果登录了，登录信息设置为空
 		}
+		document.getElementById("health-progress").value = parseInt(sessionStorage.getItem("health"));
+		//显示玩家血条
 	},200);
 }
 window.addEventListener("keydown",function(event){
