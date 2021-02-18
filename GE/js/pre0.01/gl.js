@@ -10,6 +10,7 @@ function main() {
 	//设置菜单可见
 	document.getElementById("health-progress").className = "show-element";
 	document.getElementById("health-word").className = "show-element";
+	document.getElementById("health-title").className = "show-element";
 	//设置血条可见
 	var scene = new THREE.Scene();
 	//创建场景
