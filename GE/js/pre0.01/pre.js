@@ -14,4 +14,6 @@ if (localStorage.getItem("key") == null)
 	}
 	//Get the position of the stars and save the data.
 }
+if (localStorage.getItem("health") == null)
+	localStorage.setItem("health",1920);
 	
