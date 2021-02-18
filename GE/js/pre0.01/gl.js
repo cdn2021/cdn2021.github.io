@@ -69,7 +69,7 @@ function main() {
 			document.getElementById("login-box").innerHTML = "";
 			//如果登录了，登录信息设置为空
 		}
-		document.querySelector("#health-progress").style.width = parseInt(localStorage.getItem("health")) / 1920 * 100;
+		document.querySelector("#health-progress").style.width = parseInt(parseInt(localStorage.getItem("health")) / 1920 * 100) + "px";
 		document.getElementById("health-word").innerHTML = localStorage.getItem("health") + "/1920";
 		//显示玩家血条
 	},200);
