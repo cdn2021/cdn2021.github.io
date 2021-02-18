@@ -35,8 +35,9 @@ function loadcanvas(){
 <body>
 <input type=button onclick=javascript:loadcanvas(); value='Full Screen'><br>
 	<div id=canvas-box onclick=javascript:mouseclick(event);><div id=coordinate style='position:fixed;height:5%;background:white;color:black'></div><br>
-		<div id=health-progress style='position:fixed;top:10%;left:5%;height:8px;width:100px;background:red' class=hide-element></div>
-		<div id=health-word style='position:fixed;top:10%;left:20%;height:8px;background:black;color:#00ff00' class=hide-element></div>
+		<div id=health-title style='position:fixed;top:10%;left:0%;background:black;color:red' class=hide-element>Health</div>
+		<div id=health-progress style='position:fixed;top:10%;left:2%;height:8px;width:100px;background:red' class=hide-element></div>
+		<div id=health-word style='position:fixed;top:10%;left:10%;background:black;color:#00ff00' class=hide-element></div>
 		<div id=img-memu style='position:fixed;top:0px;right:0%' class=hide-element><img src=https://cdn2021.github.io/GE/img/memu.png height=32px width=32px alt=Memu onclick=javascript:open_memu();></div>
 		<div id=memu style='position:fixed;top:20%;left:20%;background:black;color:white;height:60%;width:60%;border-style:solid;border-color:red;' class=hide-element><center><input type=button value=Back onclick=javascript:close_memu();><br><input type=button value=Logout onclick=javascript:logout();><br><input type=button value=Exit onclick=javascript:window.close();></center></div>
 	</div>
