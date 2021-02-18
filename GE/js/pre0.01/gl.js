@@ -68,8 +68,8 @@ function main() {
 			document.getElementById("login-box").innerHTML = "";
 			//如果登录了，登录信息设置为空
 		}
-		document.getElementById("health-progress").style.width = parseInt(sessionStorage.getItem("health")) / 1920 * 100;
-		document.getElementById("health-word").innerHTML = sessionStorage.getItem("health") + "/1920";
+		document.getElementById("health-progress").style.width = parseInt(localStorage.getItem("health")) / 1920 * 100;
+		document.getElementById("health-word").innerHTML = localStorage.getItem("health") + "/1920";
 		//显示玩家血条
 	},200);
 }
