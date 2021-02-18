@@ -94,15 +94,18 @@ window.addEventListener("keydown",function(event){
 function open_memu()
 {
 	document.getElementById("memu").className = "show-element";
+	//设置菜单可见
 }
 function close_memu()
 {
 	document.getElementById("memu").className = "hide-element";
+	//设置菜单不可见
 }
 function logout()
 {
 	localStorage.clear();
 	sessionStorage.clear();
 	db.deleteDB("info","console.log");
+	//退出登录
 	location.reload();
 }
