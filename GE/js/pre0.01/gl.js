@@ -104,4 +104,5 @@ function logout()
 	localStorage.clear();
 	sessionStorage.clear();
 	db.deleteDB("info","console.log");
+	location.reload();
 }
