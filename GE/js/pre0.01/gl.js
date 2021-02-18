@@ -6,6 +6,8 @@ function main() {
 	if (localStorage.getItem("camera-z") == null)
 		localStorage.setItem("camera-z",5);
 	//初始化摄像机坐标
+	document.getElementById("img-memu").className = "show-element";
+	//设置菜单可见
 	var scene = new THREE.Scene();
 	//创建场景
 	var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 100);
@@ -89,3 +91,17 @@ window.addEventListener("keydown",function(event){
 	
 	
 	});
+function open_memu()
+{
+	document.getElementById("memu").className = "show-element";
+}
+function close_memu()
+{
+	document.getElementById("memu").className = "hide-element";
+}
+function logout()
+{
+	localStorage.clear();
+	sessionStorage.clear();
+	db.deleteDB("info","console.log");
+}
