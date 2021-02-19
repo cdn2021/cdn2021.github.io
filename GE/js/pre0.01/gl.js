@@ -14,7 +14,7 @@ function main() {
 	//设置血条可见
 	var scene = new THREE.Scene();
 	//创建场景
-	var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 100);
+	var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 2000);
 	//创建摄像机
 	var renderer = new THREE.WebGLRenderer();
 	//渲染器
@@ -54,6 +54,8 @@ function main() {
 		//渲染场景
 	}
 	render();
+	rend_block(scene,camera,renderer);
+	//渲染世界的方块
 	if (sessionStorage.getItem("loginstatus") == "ok")
 	{
 	} else 
@@ -73,6 +75,7 @@ function main() {
 		document.getElementById("health-word").innerHTML = localStorage.getItem("health") + "/1920";
 		//显示玩家血条
 	},200);
+
 }
 window.addEventListener("keydown",function(event){
 		console.log(event);
@@ -115,4 +118,38 @@ function logout()
 	db.deleteDB("info","console.log");
 	//退出登录
 	location.reload();
+}
+function rend_block(scene,camera,renderer)
+{
+	//渲染世界的方块
+	var block = localStorage.getItem("world-block");
+	if (block == "" || block == null)
+		block = [];
+	else
+		block = JSON.parse(block);
+	//得到方块信息
+	var i = 0;
+	while (i != block.length)
+	{
+		var geometry = new THREE.CubeGeometry(1,1,1);
+		//创建小立方体 1,1,1大小
+		if (typeof block[i].texture == "undefined")
+		{
+			var material = new THREE.MeshBasicMaterial({map:"#00ff00"});
+			//如果没有材质，默认颜色为#00ff00 绿色
+		} else {
+			var texture = THREE.ImageUtils.loadTexture(block[i].texture,null,function(t){
+				console.log(t);
+			});
+			//如果有材质，则加载材质
+			var material = new THREE.MeshBasicMaterial({map:texture});
+		}
+		var cube = new THREE.Mesh(geometry,material);
+		scene.add(cube);
+		//添加小立方体
+		renderer.render(scene,camera);
+		//渲染页面
+		i++;
+			
+	}
 }
