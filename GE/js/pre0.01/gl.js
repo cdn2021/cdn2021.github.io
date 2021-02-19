@@ -132,9 +132,9 @@ function rend_block(scene,camera,renderer)
 	var i = 0;
 	while (i != block.length)
 	{
-		var geometry = new THREE.CubeGeometry(1,1,1);
+		var geometry = new THREE.CubeGeometry(block[i].len,block[i].width,block[i].height);
 		//console.log(geometry);
-		//创建小立方体 1,1,1大小
+		//创建立方体
 		if (typeof block[i].texture == "undefined")
 		{
 			var material = new THREE.MeshBasicMaterial({color:0x00ff00});
