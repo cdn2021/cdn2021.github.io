@@ -121,7 +121,7 @@ function logout()
 }
 function rend_block(scene,camera,renderer)
 {
-	console.log(scene,camera,renderer);
+	//console.log(scene,camera,renderer);
 	//渲染世界的方块
 	var block = localStorage.getItem("world-block");
 	if (block == "" || block == null)
@@ -133,26 +133,26 @@ function rend_block(scene,camera,renderer)
 	while (i != block.length)
 	{
 		var geometry = new THREE.CubeGeometry(1,1,1);
-		console.log(geometry);
+		//console.log(geometry);
 		//创建小立方体 1,1,1大小
 		if (typeof block[i].texture == "undefined")
 		{
-			var material = new THREE.MeshBasicMaterial({map:"#00ff00"});
+			var material = new THREE.MeshBasicMaterial({map:#00ff00});
 			//如果没有材质，默认颜色为#00ff00 绿色
 		} else {
 			var texture = THREE.ImageUtils.loadTexture(block[i].texture,null,function(t){
 				console.log(t);
 			});
-			console.log(texture);
+			//console.log(texture);
 			//如果有材质，则加载材质
 			var material = new THREE.MeshBasicMaterial({map:texture});
 		}
-		console.log(material);
+		//console.log(material);
 		var cube = new THREE.Mesh(geometry,material);
 		cube.position.x = block[i].x;
 		cube.position.y = block[i].y;
 		cube.position.z = block[i].z;
-		console.log(cube);
+		//console.log(cube);
 		scene.add(cube);
 		//添加小立方体
 		renderer.render(scene,camera);
