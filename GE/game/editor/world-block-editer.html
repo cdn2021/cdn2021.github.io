@@ -8,6 +8,8 @@
 <input type=button value=Save onclick=javascript:save();>
 <input type=button value=Export onclick=javascript:export_file();>
 Import <input type=file accept=.gef id=import_file>
+File Content:
+<iframe id=file_content border=1 height=640px width=480px>Don't support the frame.</iframe> 
 </pre>
 <script>
   sessionStorage.setItem("world-block-editor",0);
@@ -109,4 +111,16 @@ function add_block()
     ele.click();
     window.URL.revokeObjectURL(url);
   }
+  document.getElementById("import_file").onload = function() {
+    var file = document.getElementById("import_file").files[0];
+    var reader = new FileReader();
+    reader.readAsText(file);
+    reader.onload = function(){
+      var file_content = reader.result;
+      var blob = new Blob([file_content],{type:"text/plain"});
+      var url = window.URL.createObjectURL(blob);
+      document.getElementById("file_content").src = url;
+      console.log(file_content);
+    };
+  };
 </script>
