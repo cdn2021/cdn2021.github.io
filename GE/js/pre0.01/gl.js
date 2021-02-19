@@ -145,6 +145,9 @@ function rend_block(scene,camera,renderer)
 			var material = new THREE.MeshBasicMaterial({map:texture});
 		}
 		var cube = new THREE.Mesh(geometry,material);
+		cube.position.x = block[i].x;
+		cube.position.y = block[i].y;
+		cube.position.z = block[i].z;
 		scene.add(cube);
 		//添加小立方体
 		renderer.render(scene,camera);
