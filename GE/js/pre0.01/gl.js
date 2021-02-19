@@ -132,7 +132,7 @@ function rend_block(scene,camera,renderer)
 	var i = 0;
 	while (i != block.length)
 	{
-		var geometry = new THREE.CubeGeometry(block[i].len,block[i].width,block[i].height);
+		var geometry = new THREE.CubeGeometry(block[i].len,block[i].height,block[i].width);
 		//console.log(geometry);
 		//创建立方体
 		if (typeof block[i].texture == "undefined")
