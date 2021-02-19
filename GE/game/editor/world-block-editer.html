@@ -1,11 +1,11 @@
 <meta charset="utf-8">
 <script src=/GE/js/pre0.01/pre.js></script>
-<center><pre>
+<pre><center>
 <span style='font-size:3em'>Galatic Empire World-Block-Editor</span>
+</center>
 <pre id=world-block></pre>
 <input type=button value=Save onclick=javascript:save_file();>
 </pre>
-</center>
 <script>
 var world_block = localStorage.getItem("world-block");
 render(world_block);
@@ -18,12 +18,12 @@ function render(obj) {
     obj = JSON.parse(obj);
   while (i != obj.length)
   {
-    var word = "ID:" + (i + 1) + " | <span class=translate>Blockid</span>:<input type=text maxlength=128 class=editor_blockid value=" + obj[i].blockid + "> | <span class=translate>X-axis</span> <input type=text maxlength=8 class=editor_x-axis value=" + obj[i].x + "| <span class=translate>Y-axis</span> <input type=text maxlength=8 class=editor_y-axis value=" + obj[i].y + "| <span class=translate>Z-axis</span> <input type=text maxlength=8 class=editor_z-axis value=" + obj[i].z + "| <span class=translate>Length</span> <input type=text maxlength=8 class=editor_length value=" + obj[i].len + "| <span class=translate>Width</span> <input type=text maxlength=8 class=editor_width value=" + obj[i].width + "| <span class=translate>Height</span> <input type=text maxlength=8 class=editor_height value=" + obj[i].height + " | <span class=translate>Texture</span>:";
+    var word = "ID:" + (i + 1) + " | <span class=translate>Blockid</span>:<input type=text maxlength=128 class=editor_blockid value=" + obj[i].blockid + "><br><span class=translate>X-axis</span> <input type=text maxlength=8 class=editor_x-axis value=" + obj[i].x + "> | <span class=translate>Y-axis</span> <input type=text maxlength=8 class=editor_y-axis value=" + obj[i].y + ">| <span class=translate>Z-axis</span> <input type=text maxlength=8 class=editor_z-axis value=" + obj[i].z + ">|<br><span class=translate>Length</span> <input type=text maxlength=8 class=editor_length value=" + obj[i].len + ">| <span class=translate>Width</span> <input type=text maxlength=8 class=editor_width value=" + obj[i].width + ">| <span class=translate>Height</span> <input type=text maxlength=8 class=editor_height value=" + obj[i].height + "><br><span class=translate>Texture</span>:";
     if (typeof obj[i].texture == "undefined")
       word += "<font color=red><span class=translate>None</span></font>";
     else
       word += "<input type=text maxlength=1024 class=editor_texture value=" + obj[i].texture + ">";
-     word += " | <input type=button value=Delete onclick=javascript:detele_world_block(" + i + ");><br>";
+     word += " | <input type=button value=Delete onclick=javascript:detele_world_block(" + i + ");><br><hr>";
      document.getElementById("world-block").innerHTML += word;
     i++;
   }
