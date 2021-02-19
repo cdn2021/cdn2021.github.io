@@ -137,7 +137,7 @@ function rend_block(scene,camera,renderer)
 		//创建小立方体 1,1,1大小
 		if (typeof block[i].texture == "undefined")
 		{
-			var material = new THREE.MeshBasicMaterial({map:#00ff00});
+			var material = new THREE.MeshBasicMaterial({map:0x00ff00});
 			//如果没有材质，默认颜色为#00ff00 绿色
 		} else {
 			var texture = THREE.ImageUtils.loadTexture(block[i].texture,null,function(t){
