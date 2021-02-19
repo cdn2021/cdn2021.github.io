@@ -7,6 +7,7 @@
 <input type=button value=Save onclick=javascript:save_file();>
 </pre>
 <script>
+  sessionStorage.setItem("world-block-editor",0);
 var world_block = localStorage.getItem("world-block");
 render(world_block);
 function render(obj) {
@@ -20,13 +21,73 @@ function render(obj) {
   {
     var word = "ID:" + (i + 1) + " | <span class=translate>Blockid</span>:<input type=text maxlength=128 class=editor_blockid value=" + obj[i].blockid + "><br><span class=translate>X-axis</span> <input type=text maxlength=8 class=editor_x-axis value=" + obj[i].x + "> | <span class=translate>Y-axis</span> <input type=text maxlength=8 class=editor_y-axis value=" + obj[i].y + ">| <span class=translate>Z-axis</span> <input type=text maxlength=8 class=editor_z-axis value=" + obj[i].z + ">|<br><span class=translate>Length</span> <input type=text maxlength=8 class=editor_length value=" + obj[i].len + ">| <span class=translate>Width</span> <input type=text maxlength=8 class=editor_width value=" + obj[i].width + ">| <span class=translate>Height</span> <input type=text maxlength=8 class=editor_height value=" + obj[i].height + "><br><span class=translate>Texture</span>:";
     if (typeof obj[i].texture == "undefined")
-      word += "<font color=red><span class=translate>None</span></font>";
+      word += "<input type=text maxlength=1024 class=editor_texture value=None>";
     else
       word += "<input type=text maxlength=1024 class=editor_texture value=" + obj[i].texture + ">";
      word += " | <input type=button value=Delete onclick=javascript:detele_world_block(" + i + ");><br><hr>";
      document.getElementById("world-block").innerHTML += word;
     i++;
   }
-}
+sessionStorage.setItem("world-block-editor",i);
   document.getElementById("world-block").innerHTML += "<input type=button value='Add block' onclick=javascript:add_block();>";
+}
+function add_block()
+  {
+    var word = document.getElementById("world-block").innerHTML;
+    word = word.substring(0,word.length - 69);
+    var id = parseInt(sessionStorage.getItem("world-block-editor"));
+    id++;
+        var word = "ID:" + id + " | <span class=translate>Blockid</span>:<input type=text maxlength=128 class=editor_blockid><br><span class=translate>X-axis</span> <input type=text maxlength=8 class=editor_x-axis> | <span class=translate>Y-axis</span> <input type=text maxlength=8 class=editor_y-axis>| <span class=translate>Z-axis</span> <input type=text maxlength=8 class=editor_z-axis>|<br><span class=translate>Length</span> <input type=text maxlength=8 class=editor_length >| <span class=translate>Width</span> <input type=text maxlength=8 class=editor_width >| <span class=translate>Height</span> <input type=text maxlength=8 class=editor_height ><br><span class=translate>Texture</span>:<input type=text maxlength=1024 class=editor_texture value=None>| <input type=button value=Delete onclick=javascript:detele_world_block(" + id + ");><br><hr><input type=button value='Add block' onclick=javascript:add_block();>";
+    document.getElementById("world-block").innerHTML = word;
+    sessionStorage.setItem("world-block-editor",id);
+  }
+  function save()
+  {
+    var obj = [];
+    var ele = document.getElementsByClassName("editor_blockid");
+    var i = 0;
+    while (i != ele.length)
+    {
+      obj[i] = {};
+      obj[i].blockid = document.getElementsByClassName("editor_blockid")[i].value;
+      obj[i].x = document.getElementsByClassName("editor_x-axis")[i].value;
+      obj[i].y = document.getElementsByClassName("editor_y-axis")[i].value;
+      obj[i].z = document.getElementsByClassName("editor_z-axis")[i].value;
+      obj[i].len = document.getElementsByClassName("editor_length")[i].value;
+      obj[i].height = document.getElementsByClassName("editor_height")[i].value;
+      obj[i].width = document.getElementsByClassName("editor_width")[i].value;
+      var texture = document.getElementsByClassName("editor_texture")[i].value;
+      if (texture != "None")
+        obj[i].texture = texture;
+      i++;
+    }
+    obj = JSON.stringify(obj);
+    localStorage.setItem("world-block",obj);
+    render(obj);
+    
+  }
+  function delete_world_block(array_id)
+  {
+    var obj = [];
+    var ele = document.getElementsByClassName("editor_blockid");
+    var i = 0;
+    
+    while (i != ele.length)
+    {
+      obj[i] = {};
+      obj[i].blockid = document.getElementsByClassName("editor_blockid")[i].value;
+      obj[i].x = document.getElementsByClassName("editor_x-axis")[i].value;
+      obj[i].y = document.getElementsByClassName("editor_y-axis")[i].value;
+      obj[i].z = document.getElementsByClassName("editor_z-axis")[i].value;
+      obj[i].len = document.getElementsByClassName("editor_length")[i].value;
+      obj[i].height = document.getElementsByClassName("editor_height")[i].value;
+      obj[i].width = document.getElementsByClassName("editor_width")[i].value;
+      var texture = document.getElementsByClassName("editor_texture")[i].value;
+      if (texture != "None")
+        obj[i].texture = texture;
+      i++;
+    }
+    obj.splice(array_id,1);
+    render(JSON.stringify(obj));
+  }
 </script>
