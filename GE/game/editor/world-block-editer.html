@@ -6,6 +6,7 @@
 </center>
 <pre id=world-block></pre>
 <input type=button value=Save onclick=javascript:save();>
+<input type=button value=Export onclick=javascript:export();>
 </pre>
 <script>
   sessionStorage.setItem("world-block-editor",0);
@@ -91,5 +92,20 @@ function add_block()
     }
     obj.splice(array_id,1);
     render(JSON.stringify(obj));
+  }
+  function export()
+  {
+    save();
+    var content = localStorage.getItem("world-block");
+    content = "FILE HEADER PIGFILE GALATIC EMPIRE 2950 FILE WORLD BLOCK CONTENT EXPORT FILE PIG AIR STUDIO FILE JAVASCRIPT OBJECT NOTATION FILE JSON SIZE " + content.length + " FILE BODY " + content + " FILE END THE END OF FILE PIG FILE GALATIC EMPIRE 2950 FILE EXPORT FILE PIG EOF";
+    
+    var blob = new Blob([content],{type:"text/plain"});
+    var url = window.URL.createObjectURL(blob);
+    var ele = document.createElement("a");
+    var filename = "export.gef";
+    ele.href = url;
+    ele.download = filename;
+    ele.click();
+    window.URL.revokeObjectURL(url);
   }
 </script>
