@@ -4,7 +4,7 @@
 <span style='font-size:3em'>Galatic Empire World-Block-Editor</span>
 </center>
 <pre id=world-block></pre>
-<input type=button value=Save onclick=javascript:save_file();>
+<input type=button value=Save onclick=javascript:save();>
 </pre>
 <script>
   sessionStorage.setItem("world-block-editor",0);
@@ -26,6 +26,7 @@ function render(obj) {
       word += "<input type=text maxlength=1024 class=editor_texture value=" + obj[i].texture + ">";
      word += " | <input type=button value=Delete onclick=javascript:delete_world_block(" + i + ");><br><hr>";
      document.getElementById("world-block").innerHTML += word;
+    console.log(word);
     i++;
   }
 sessionStorage.setItem("world-block-editor",i);
