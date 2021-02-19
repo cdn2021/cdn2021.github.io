@@ -6,7 +6,7 @@
 </center>
 <pre id=world-block></pre>
 <input type=button value=Save onclick=javascript:save();>
-<input type=button value=Export onclick=javascript:export();>
+<input type=button value=Export onclick=javascript:export_file();>
 </pre>
 <script>
   sessionStorage.setItem("world-block-editor",0);
@@ -93,7 +93,7 @@ function add_block()
     obj.splice(array_id,1);
     render(JSON.stringify(obj));
   }
-  function export()
+  function export_file()
   {
     save();
     var content = localStorage.getItem("world-block");
