@@ -5,6 +5,7 @@
 <span style='font-size:3em'>Galatic Empire World-Block-Editor</span>
 </center>
 <pre id=world-block></pre>
+<input type=button value='Add block' onclick=javascript:add_block();>
 <input type=button value=Save onclick=javascript:save();>
 <input type=button value=Export onclick=javascript:export_file();>
 Import <input type=file accept=.gef id=import_file>
@@ -35,16 +36,13 @@ function render(obj) {
     i++;
   }
 sessionStorage.setItem("world-block-editor",i);
-  document.getElementById("world-block").innerHTML += "<input type=button value='Add block' onclick=javascript:add_block();>";
 }
 function add_block()
   {
-    var word = document.getElementById("world-block").innerHTML;
-    word = word.substring(0,word.length - 84);
     var id = parseInt(sessionStorage.getItem("world-block-editor"));
     id++;
-        word += "ID:" + id + " | <span class=translate>Blockid</span>:<input type=text maxlength=128 class=editor_blockid><br><span class=translate>X-axis</span> <input type=text maxlength=8 class=editor_x-axis> | <span class=translate>Y-axis</span> <input type=text maxlength=8 class=editor_y-axis>| <span class=translate>Z-axis</span> <input type=text maxlength=8 class=editor_z-axis>|<br><span class=translate>Length</span> <input type=text maxlength=8 class=editor_length >| <span class=translate>Width</span> <input type=text maxlength=8 class=editor_width >| <span class=translate>Height</span> <input type=text maxlength=8 class=editor_height ><br><span class=translate>Texture</span>:<input type=text maxlength=1024 class=editor_texture value=None>| <input type=button value=Delete onclick=javascript:delete_world_block(" + id + ");><br><hr><input type=button value='Add block' onclick=javascript:add_block();>";
-    document.getElementById("world-block").innerHTML = word;
+    var word = "ID:" + id + " | <span class=translate>Blockid</span>:<input type=text maxlength=128 class=editor_blockid><br><span class=translate>X-axis</span> <input type=text maxlength=8 class=editor_x-axis> | <span class=translate>Y-axis</span> <input type=text maxlength=8 class=editor_y-axis>| <span class=translate>Z-axis</span> <input type=text maxlength=8 class=editor_z-axis>|<br><span class=translate>Length</span> <input type=text maxlength=8 class=editor_length >| <span class=translate>Width</span> <input type=text maxlength=8 class=editor_width >| <span class=translate>Height</span> <input type=text maxlength=8 class=editor_height ><br><span class=translate>Texture</span>:<input type=text maxlength=1024 class=editor_texture value=None>| <input type=button value=Delete onclick=javascript:delete_world_block(" + id + ");><br><hr>";
+    document.getElementById("world-block").innerHTML += word;
     sessionStorage.setItem("world-block-editor",id);
   }
   function save()
