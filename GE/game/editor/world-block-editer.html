@@ -32,7 +32,7 @@ function render(obj) {
       word += "<input type=text maxlength=1024 class=editor_texture value=" + obj[i].texture + ">";
      word += " | <input type=button value=Delete onclick=javascript:delete_world_block(" + i + ");><br><hr>";
      document.getElementById("world-block").innerHTML += word;
-    console.log(word);
+    //console.log(word);
     i++;
   }
 sessionStorage.setItem("world-block-editor",i);
@@ -134,17 +134,17 @@ function add_block()
   };
   function load_file(version,file_content)
   {
-    console.log(version,file_content);
+    //console.log(version,file_content);
     //file_content = file_content.substring(100 + version.length);
-    var size = parseInt(file_content.substring(100 + version.length));
-    console.log(size);
+    var size = parseInt(file_content.substring(100 + version.toString().length));
+    //console.log(size);
     //console.log(file_content);
     //file_content = file_content.substring(size.length);
     //console.log(file_content);
     //file_content = file_content.substring(11);
     //console.log(file_content);
-    var content = file_content.substring(111 + size.length + version.length,111 + size.length + version.length + size);
-    console.log(content);
+    var content = file_content.substring(111 + size.toString().length + version.toString().length,111 + size.toString().length + version.toString().length + size);
+    //console.log(content);
     localStorage.setItem("world-block",content);
     render(content);
   }
