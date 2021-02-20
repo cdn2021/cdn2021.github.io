@@ -80,10 +80,10 @@ function main() {
 		document.querySelector("#health-progress").style.width = parseInt(parseInt(localStorage.getItem("health")) / 1920 * 100) + "px";
 		document.getElementById("health-word").innerHTML = localStorage.getItem("health") + "/1920";
 		//显示玩家血条
-		document.querySelector("#food-progress").style.width = parseInt(localStorage.getItem("health")) + "px";
+		document.querySelector("#food-progress").style.width = parseInt(localStorage.getItem("food")) + "px";
 		document.getElementById("food-word").innerHTML = localStorage.getItem("food") + "/100";
 		//显示玩家饥饿度
-		document.querySelector("#water-progress").style.width = parseInt(localStorage.getItem("health")) + "px";
+		document.querySelector("#water-progress").style.width = parseInt(localStorage.getItem("water")) + "px";
 		document.getElementById("water-word").innerHTML = localStorage.getItem("water") + "/100";
 		//显示玩家口渴度
 	},200);
