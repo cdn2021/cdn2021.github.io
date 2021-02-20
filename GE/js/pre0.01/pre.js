@@ -16,6 +16,11 @@ if (localStorage.getItem("key") == null)
 }
 if (localStorage.getItem("health") == null)
 	localStorage.setItem("health",1920);
+if (localStorage.getItem("food") == null)
+	localStorage.setItem("food",100);
+if (localStorage.getItem("water") == null)
+	localStorage.setItem("water",100);
+//Set the health,food,water of the player.
 if (localStorage.getItem("world-block") == null)
 {
 	let xhr = new XMLHttpRequest();
