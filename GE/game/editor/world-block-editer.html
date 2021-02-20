@@ -111,7 +111,7 @@ function add_block()
     ele.click();
     window.URL.revokeObjectURL(url);
   }
-  document.getElementById("import_file").onload = function() {
+  document.getElementById("import_file").onchange = function() {
     var file = document.getElementById("import_file").files[0];
     var reader = new FileReader();
     reader.readAsText(file);
