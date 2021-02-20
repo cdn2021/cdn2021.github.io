@@ -9,7 +9,7 @@
 <input type=button value=Export onclick=javascript:export_file();>
 Import <input type=file accept=.gef id=import_file>
 File Content:
-<iframe id=file_content border=1 height=640px width=480px>Don't support the frame.</iframe> 
+<iframe id=file_content border=1 height=480px width=640px>Don't support the frame.</iframe> 
 </pre>
 <script>
   sessionStorage.setItem("world-block-editor",0);
@@ -121,6 +121,28 @@ function add_block()
       var url = window.URL.createObjectURL(blob);
       document.getElementById("file_content").src = url;
       console.log(file_content);
+      file_content = file_content.substring(35);
+      var version = parseInt(file_content);
+      if (version == 2950)
+      {
+        load_file(version,file_content);
+      } else {
+        if (confirm("Version " + version + " of this file is different from the current version of the game, are you sure you want to load it? Errors may result"))
+        {
+          load_file(2950);
+        } else return;
+      }
     };
   };
+  function load_file(version,file_content)
+  {
+    file_content = file_content.substring(version.length);
+    file_content = file_content.substring(100);
+    var size = parseInt(file_content);
+    file_content = file_content.substring(size.length);
+    file_content = file_content.substring(11);
+    var content = file_content.substring(0,size);
+    localStorage.setItem("world-block",content);
+    render(content);
+  }
 </script>
