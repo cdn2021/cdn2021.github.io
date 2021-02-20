@@ -127,7 +127,7 @@ function add_block()
       } else {
         if (confirm("Version " + version + " of this file is different from the current version of the game, are you sure you want to load it? Errors may result"))
         {
-          load_file(2950);
+          load_file(2950,file_content);
         } else return;
       }
     };
@@ -135,12 +135,12 @@ function add_block()
   function load_file(version,file_content)
   {
     console.log(version,file_content);
-    file_content = file_content.substring(version.length);
-    file_content = file_content.substring(100);
+    file_content = file_content.substring(100 + version.length);
     var size = parseInt(file_content);
     console.log(size);
     console.log(file_content);
     file_content = file_content.substring(size.length);
+    console.log(file_content);
     file_content = file_content.substring(11);
     console.log(file_content);
     var content = file_content.substring(0,size);
