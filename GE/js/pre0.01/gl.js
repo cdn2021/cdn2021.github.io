@@ -11,7 +11,13 @@ function main() {
 	document.getElementById("health-progress").className = "show-element";
 	document.getElementById("health-word").className = "show-element";
 	document.getElementById("health-title").className = "show-element";
-	//设置血条可见
+	document.getElementById("water-progress").className = "show-element";
+	document.getElementById("water-word").className = "show-element";
+	document.getElementById("water-title").className = "show-element";
+	document.getElementById("food-progress").className = "show-element";
+	document.getElementById("food-word").className = "show-element";
+	document.getElementById("food-title").className = "show-element";
+	//设置血条、饥饿度、口渴度可见
 	var scene = new THREE.Scene();
 	//创建场景
 	var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 2000);
@@ -74,6 +80,12 @@ function main() {
 		document.querySelector("#health-progress").style.width = parseInt(parseInt(localStorage.getItem("health")) / 1920 * 100) + "px";
 		document.getElementById("health-word").innerHTML = localStorage.getItem("health") + "/1920";
 		//显示玩家血条
+		document.querySelector("#food-progress").style.width = parseInt(localStorage.getItem("health")) + "px";
+		document.getElementById("food-word").innerHTML = localStorage.getItem("food") + "/100";
+		//显示玩家饥饿度
+		document.querySelector("#water-progress").style.width = parseInt(localStorage.getItem("health")) + "px";
+		document.getElementById("water-word").innerHTML = localStorage.getItem("water") + "/100";
+		//显示玩家口渴度
 	},200);
 
 }
