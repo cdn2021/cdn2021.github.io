@@ -56,7 +56,7 @@ $.player.default.setPlayerCoordinate = function (...argu) {
     localStorage.setItem("camera-y",argu[0].y);
   if (typeof argu[0].z != "undefined")
     localStorage.setItem("camera-z",argu[0].z);
-  return argu[0];
+  return $.player.default.getPlayerCoordinare();
 };
 $.version = "pre0.01";
 var piglib = $;
