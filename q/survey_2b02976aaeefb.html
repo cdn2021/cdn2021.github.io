@@ -1,0 +1,26 @@
+<meta charset="utf-8">
+<title>问卷调查 - 2b02976aaeefb</title>
+<script src=/bmobSDK.js></script>
+<center><span style='font-size=3em'>问卷调查</span>
+<br><span style='font-size=1.5em'>编号2b02976aaeefb</span>
+
+<br><input type=button value=提交 onclick=javascript:submitform();>
+<script>
+function submitform()
+{
+
+Bmob.initialize("5200d7f4ce3ea3d7","081126");
+
+const query = Bmob.Query('aab171ef271');
+query.set("content","name=");
+query.save().then(res => {
+  console.log(res);
+location.href = "ok.html";
+}).catch(err => {
+  console.log(err);
+location.href = "onerror.html";
+
+})
+
+}
+</script>
