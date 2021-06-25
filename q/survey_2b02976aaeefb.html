@@ -3,24 +3,43 @@
 <script src=/bmobSDK.js></script>
 <center><span style='font-size=3em'>问卷调查</span>
 <br><span style='font-size=1.5em'>编号2b02976aaeefb</span>
-
+1. 请选择7月份时间段<br>
+  <select id=t_7><option value=1>7月6日-7月10日 8:30-10:00</option><option value=2>7月6日-7月10日 13:00-14:30</option><option value=3>7月12日-7月16日 13:00-14:30</option></select>
+  <br><br>
+2. 请选择8月份时间段<br>
+  <select id=t_8><option value=1>8月2日-8月6日 8:30-10:00</option><option value=2>8月2日-8月6日 13:00-14:30</option><option value=3>8月9日-8月13日 8:30-10:00</option><option value=4>8月9日-8月13日 13:00-14:30</option></select>
 <br><input type=button value=提交 onclick=javascript:submitform();>
 <script>
 function submitform()
 {
-
+var t_7 = document.querySelector("#t_7").value;
+var t_8 = document.querySelector("#t_8").value;
 Bmob.initialize("5200d7f4ce3ea3d7","081126");
+  if (typeof(localStorage.two_b02976aaeefb) != "undefined")
+    alert("请不要重复提交！");
+  
+localStorage.two_b02976aaeefb = true;
+const query = Bmob.Query('question');
+  query.get('VCEoAAAK').then(function(res){
+    console.log(res);
+    res.data = JSON.parse(res.data);
+    res.data[0][t_7]++;
+    res.data[1][t_8]++;
+    query.set("id","VCEoAAAK");
+    query.set("data",JSON.stringify(res.data));
+    query.save().then(function(res){
+      console.log(res);
+      alert("提交成功！谢谢您的配合！");
+      location.href = "https://cn.bing.com";
+    }).catch(function(err){
+      console.log(err);
+      alert("数据上传失败！");
+      localStorage.two_b02976aaeefb = undefined;
+    });
+  }).catch(function(err){
+    alert("Failed to get the data from the server.");
+  });
 
-const query = Bmob.Query('aab171ef271');
-query.set("content","name=");
-query.save().then(res => {
-  console.log(res);
-location.href = "ok.html";
-}).catch(err => {
-  console.log(err);
-location.href = "onerror.html";
-
-})
 
 }
 </script>
