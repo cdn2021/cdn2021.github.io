@@ -1,0 +1,192 @@
+<meta charset="utf-8">
+<div id=monitor></div>
+<script>
+var n = {"1":"冯恩娜","2":"齐芸瑶","3":"徐希玮","4":"张诗琪","5":"林慧如","6":"康恩茜","7":"张嘉怡","8":"吴妍琦","9":"吴优","10":"聂小雅","11":"孙莹馨","12":"万逾豪","13":"赵一诚","14":"李沪纲","15":"胡峰源","16":"王宇轩","17":"徐亦辰","18":"李雨丞","19":"张粟童","20":"朱禹辰","21":"陆哲文","22":"朴有丽","23":"胡艺菲","24":"张海阳","25":"徐辰羽","26":"翁希娜","27":"随天佑","28":"杨佳宇","29":"陈泰哲","30":"姜城彬","31":"李成浩","32":"徐崇斌","33":"张博","34":"熊方周","35":"杨可欣"};
+
+	if (localStorage.bmobSDK) {
+		eval(localStorage.bmobSDK);
+		Bmob.initialize("5200d7f4ce3ea3d7","081126");
+	} else {
+		setTimeout(function(){
+			document.querySelector("#monitor").innerHTML = "Requesting the database SDK......";
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET","https://cdn.jsdelivr.net/gh/pig-cmd/pig-cmd.github.io/bmobSDK.js",false);
+			xhr.send();
+			if (xhr.status >= 200 && xhr.status < 400){
+				localStorage.bmobSDK = xhr.response;
+				location.reload();
+			} else {
+				document.querySelector("#monitor").innerHTML = "Failed to request the SDK.";
+			};
+		},500);
+	};
+	if (localStorage.zqzx2024_6_2020FinalExamPoints && localStorage.zqzx2024_6_2020FinalExamLevels){
+		Bmob.initialize("5200d7f4ce3ea3d7","081126");
+		InitPage();
+	} else {
+		setInterval(function(){
+			if (localStorage.zqzx2024_6_2020FinalExamPoints && localStorage.zqzx2024_6_2020FinalExamLevels){
+				location.reload();
+			} else {
+				document.querySelector("#monitor").innerHTML = "Geting the data from the database.";
+			};
+		},200);
+		setTimeout(function(){
+			Bmob.initialize("5200d7f4ce3ea3d7","081126");
+			var query = Bmob.Query("question");
+			query.get("BZ9c1115").then(function(res){
+				localStorage.zqzx2024_6_2020FinalExamPoints = res.data;
+			}).catch(function(err){
+				document.querySelector("#monitor").innerHTML = "Failed to get data.";
+			});
+			query.get("DG4q111a").then(function(res){
+				localStorage.zqzx2024_6_2020FinalExamLevels = res.data;
+			}).catch(function(err){
+				document.querySelector("#monitor").innerHTML = "Failed to get data.";
+			});
+
+		},600);
+	};
+
+
+
+
+function InitPage(){
+	var level = JSON.parse(localStorage.zqzx2024_6_2020FinalExamLevels);
+	var point = JSON.parse(localStorage.zqzx2024_6_2020FinalExamPoints);
+	window.level = level;
+	window.point = point;
+	var index = 1;
+	var sortByNumber = false;
+	while (index < level.length){
+		if (level[index] == null){
+			sortByNumber = true;
+			break;
+		};
+			
+		index++;
+	};
+	if (sortByNumber)
+		var sort_arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35];
+	else
+		var sort_arr = sortLevel(level);
+	document.querySelector("#monitor").innerHTML = "<p style='font-size:2em'>2020学年第二学期期末测验预初6班考试成绩统计</p>姓名<span id=select_box></span><br><hr><div id=show ><p id=name style='font-size:1.5em;'></p><br><table><tr><td><span style='color:white'>学科</span></td><td><span style='color:white'>分数</span></td><td><span style='color:white'>班级排名</span></td><td><span style='color:white'>年级排名</span></td></tr><tr><td><span style='color:white'>语文</span></td><td><span class=point></span></td><td><span class=class_level></span></td><td><span class=grade_level></span></td></tr><tr><td><span style='color:white'>数学</span></td><td><span class=point></span></td><td><span class=class_level></span></td><td><span class=grade_level></span></td></tr><tr><td><span style='color:white'>英语</span></td><td><span class=point></span></td><td><span class=class_level></span></td><td><span class=grade_level></span></td></tr></table><br>总分 <span id=total_point></span>   平均分 <span id=average_point></span><br>班级排名<span id=total_class_level>   年级排名<span id=total_grade_level></div>";
+	document.querySelector("#monitor").style.background = "#202020";
+	document.querySelector("#monitor").style.color = "white";
+	document.querySelector("#monitor").style.position = "fixed";
+	document.querySelector("#monitor").style.top = "0%";
+	document.querySelector("#monitor").style.left = "0%";
+	document.querySelector("#monitor").style.height = "100%";
+	document.querySelector("#monitor").style.width = "100%";
+	LoadSelectBox(sort_arr);
+	if (!localStorage.history_20210629)
+		show(sort_arr[0]);
+	else {	
+		document.querySelector("select").value = localStorage.history_20210629;
+		show(parseInt(localStorage.history_20210629));
+	};
+	var eles = document.querySelectorAll("span");
+	var index = 0;
+	while (index < eles.length){
+		eles[index].style.color = "white";
+		index++;
+	};
+};
+function sortLevel(arr){
+	var result = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35];
+	var index = 1;
+	while (index <= 35){
+		var j = index + 1;
+		while (j <= 35){
+			if (arr[index][3] < arr[j][3]){
+				//按降序排序
+				//swap
+				result[j-1] = result[index-1] ^ result[j-1];
+				result[index-1] = result[index-1] ^ result[j-1];
+				result[j-1] = result[index-1] ^ result[j-1];
+			};
+			j++;
+		};
+		index++;
+	};
+	return result;
+};
+function show(number){
+	document.querySelector("#name").innerHTML = n[number];
+	var n_points = window.point[number];
+	var n_levels = window.level[number];
+	var ele_points = document.querySelectorAll(".point");
+	var ele_class_levels = document.querySelectorAll(".class_level");
+	var ele_grade_levels = document.querySelectorAll(".grade_level");
+	var index = 0;
+	while (index < ele_points.length){
+		ele_points[index].innerHTML = tostring(n_points[index]);
+		ele_grade_levels[index].innerHTML = tostring(n_levels[index]);
+		index++;
+	};
+	var total_points = parseFloat(n_points[0]) + parseFloat(n_points[1]) + parseFloat(n_points[2]);
+	if (isNaN(total_points))
+		total_points = "null";
+	document.querySelector("#total_point").innerHTML = total_points;
+	var average_points = total_points / 3;
+	if (isNaN(average_points))
+		average_points = "null";
+	else
+		average_points = average_points.toFixed(2);
+	document.querySelector("#average_point").innerHTML = average_points;
+	document.querySelector("#total_grade_level").innerHTML = tostring(n_levels[3]);
+};
+function tostring(v){
+	if (v == null || v == "")
+		return "null";
+	else
+		return v.toString();
+};
+function LoadSelectBox(arr){
+	window.sort_arr = arr;
+	var str = "<select>";
+	var i = 0;
+	while (i < arr.length){
+		str += "<option value=" + arr[i] + ">" + n[arr[i]] + "</option>";
+		i++;
+	};
+	str += "</select>";
+	document.querySelector("#select_box").innerHTML = str;
+	setTimeout(function(){
+		document.querySelector("select").onchange = function(){
+			show(this.value);
+		};
+	},200);
+	setInterval(function(){
+		localStorage.history_20210629 = document.querySelector("select").value;
+	},500);
+	document.body.addEventListener("keydown",function(e){
+		if (e.keyCode == 37){
+			var nameid = window.sort_arr[getNameId() - 1];
+			if (nameid >= 1){
+
+				document.querySelector("select").value = nameid;
+				show(nameid);
+			};
+		};
+		if (e.keyCode == 39){
+			var nameid = window.sort_arr[getNameId() + 1];
+			if (nameid <= 35){
+				document.querySelector("select").value = nameid;
+				show(nameid);
+			};
+		};
+	});
+	
+};
+function getNameId(){
+	var val = document.querySelector("select").value;
+	var arr = window.sort_arr;
+	var index = 0;
+	while (index < arr.length){
+		if (arr[index] == val)
+			return index;
+		index++;
+	};
+};
+</script>
