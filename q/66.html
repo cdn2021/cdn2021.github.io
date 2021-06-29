@@ -20,12 +20,12 @@ var n = {"1":"冯恩娜","2":"齐芸瑶","3":"徐希玮","4":"张诗琪","5":"�
 			};
 		},500);
 	};
-	if (localStorage.zqzx2024_6_2020FinalExamPoints && localStorage.zqzx2024_6_2020FinalExamLevels){
+	if (sessionStorage.zqzx2024_6_2020FinalExamPoints && sessionStorage.zqzx2024_6_2020FinalExamLevels){
 		Bmob.initialize("5200d7f4ce3ea3d7","081126");
 		InitPage();
 	} else {
 		setInterval(function(){
-			if (localStorage.zqzx2024_6_2020FinalExamPoints && localStorage.zqzx2024_6_2020FinalExamLevels){
+			if (sessionStorage.zqzx2024_6_2020FinalExamPoints && sessionStorage.zqzx2024_6_2020FinalExamLevels){
 				location.reload();
 			} else {
 				document.querySelector("#monitor").innerHTML = "Geting the data from the database.";
@@ -35,12 +35,12 @@ var n = {"1":"冯恩娜","2":"齐芸瑶","3":"徐希玮","4":"张诗琪","5":"�
 			Bmob.initialize("5200d7f4ce3ea3d7","081126");
 			var query = Bmob.Query("question");
 			query.get("BZ9c1115").then(function(res){
-				localStorage.zqzx2024_6_2020FinalExamPoints = res.data;
+				sessionStorage.zqzx2024_6_2020FinalExamPoints = res.data;
 			}).catch(function(err){
 				document.querySelector("#monitor").innerHTML = "Failed to get data.";
 			});
 			query.get("DG4q111a").then(function(res){
-				localStorage.zqzx2024_6_2020FinalExamLevels = res.data;
+				sessionStorage.zqzx2024_6_2020FinalExamLevels = res.data;
 			}).catch(function(err){
 				document.querySelector("#monitor").innerHTML = "Failed to get data.";
 			});
@@ -52,8 +52,8 @@ var n = {"1":"冯恩娜","2":"齐芸瑶","3":"徐希玮","4":"张诗琪","5":"�
 
 
 function InitPage(){
-	var level = JSON.parse(localStorage.zqzx2024_6_2020FinalExamLevels);
-	var point = JSON.parse(localStorage.zqzx2024_6_2020FinalExamPoints);
+	var level = JSON.parse(sessionStorage.zqzx2024_6_2020FinalExamLevels);
+	var point = JSON.parse(sessionStorage.zqzx2024_6_2020FinalExamPoints);
 	window.level = level;
 	window.point = point;
 	var index = 1;
