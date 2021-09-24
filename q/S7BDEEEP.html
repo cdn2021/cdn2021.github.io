@@ -56,7 +56,7 @@ table.get(id).then(function(res){
 		i++;
 	};
 	var subject_average = GetAverage(dat);
-	str += "<tr><td>0</td><td>班级平均分</td><td><span id=subject_chinese_average>" + subject_average.chinese + "</span></td><span id=subject_chinese_article_average>" + subject_average.chinese_article + "</span></td><span id=subject_chinese_writing_average>" + subject_average.chinese_writing + "</span></td><td><span id=subject_maths_average>" + subject_average.maths + "</span></td><td><span id=subject_english_average>" + subject_average.english + "</span></td><td>-</td><td>-</td></tr></table>";
+	str += "<tr><td>0</td><td>班级平均分</td><td><span id=subject_chinese_average>" + subject_average.chinese + "</span></td><td><span id=subject_chinese_article_average>" + subject_average.chinese_article + "</span></td><td><span id=subject_chinese_writing_average>" + subject_average.chinese_writing + "</span></td><td><span id=subject_maths_average>" + subject_average.maths + "</span></td><td><span id=subject_english_average>" + subject_average.english + "</span></td><td>-</td><td>-</td></tr></table>";
 	document.querySelector("#monitor").innerHTML = "<input type=button value=提交数据 onclick=javascript:upload_data();><input type=button value=数据导出 onclick=javascript:export_data();><hr>" + str;
     visit_table.get(vid).then(function(res){
         var v_dat = res.data;
@@ -144,7 +144,7 @@ function export_data(){
 	  var en = document.getElementsByClassName("english");
 	  var average = document.getElementsByClassName("person_average");
 	  var total = document.getElementsByClassName("person_total");
-	  while (i < 36){
+	  while (i < 31){
 		  str += i + "," + n[i] + "," + ch[i-1].value + "," + ch_article[i-1].value + "," + ch_writing[i-1].value + "," + ma[i-1].value + "," + en[i-1].value + "," + average[i-1].innerHTML + "," + total[i-1].innerHTML + "\n";
 		  i++;
 	  };
