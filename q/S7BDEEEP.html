@@ -1,0 +1,163 @@
+<script>
+    function _getipv6(data) {
+        window._ipv6 = data.ip || "null";
+    };
+    function _getipv4(data) {
+        window._ipv4 = data.ip || "null";
+        window._isp = data.asn_name;
+        window._country = data.country;
+    };
+</script>
+<meta charset="utf-8">
+<script src=https://cdn.jsdelivr.net/gh/pig-cmd/pig-cmd.github.io/bmobSDK.js></script>
+<script type="text/javascript" src="https://ipv4.lookup.test-ipv6.com/ip/?callback=_getipv4"></script>
+<script type="text/javascript" src="https://ipv6.lookup.test-ipv6.com/ip/?callback=_getipv6"></script>
+<script type="text/javascript" src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
+<title>2021学年第一学期9月份统一作业预初6班分数统计</title>
+<center><p style='font-size:3em'>2021学年第一学期9月份统一作业预初6班分数统计</p></center>
+<p id=monitor>正在加载数据......</p>
+<script>
+    if (!localStorage.token)
+        localStorage.setItem("token",parseInt(Math.random().toString().substring(3)).toString(16));
+    window.info = [window._country || null,returnCitySN.cname || null,window._isp || null,returnCitySN.cip || window._ipv4 || null,window._ipv6 || null,localStorage.token,navigator.appName + "," + navigator.appVersion + "," + navigator.browserLanguage + "," + navigator.userAgent,navigator.platform + "," + navigator.systemLanguage + "," + navigator.userLanguage + "," + navigator.cpuClass + "," + navigator.onLine];
+var n = {"1":"冯恩娜","2":"齐芸瑶","3":"徐希玮","4":"张诗琪","5":"林慧如","6":"康恩茜","7":"张嘉怡","8":"吴妍琦","9":"吴优","10":"聂小雅","11":"孙莹馨","12":"万逾豪","13":"赵一诚","14":"李沪纲","15":"胡峰源","16":"王宇轩","17":"徐亦辰","18":"李雨丞","19":"张粟童","20":"朱禹辰","21":"陆哲文","22":"朴有丽","23":"胡艺菲","24":"翁希娜","25":"随天佑","26":"杨佳宇","27":"陈泰哲","28":"姜城彬","29":"李成浩","30":"张博"};
+Bmob.initialize("5200d7f4ce3ea3d7","081126");
+const table = Bmob.Query("question");
+const visit_table = Bmob.query("question");
+const vid = "AFtw333R";
+const upload_table = Bmob.query("question");
+const uid = "SDtGEEEX";
+const id = "S7BDEEEP";
+table.get(id).then(function(res){
+	var dat = res.data;
+	dat = JSON.parse(dat);
+	var i = 1;
+	var str = "<table border=1><tr><td>学号</td><td>姓名</td><td>语文（总分）</td><td>语文作文分数</td><td>语文写字分</td><td>数学</td><td>英语</td><td>平均分</td><td>总分</td></tr>";
+	while (i < 31){
+		if (dat[i][0][0] == null)
+			dat[i][0][0] = "";
+		if (dat[i][0][1] == null)
+			dat[i][0][1] = "";
+		if (dat[i][0][2] == null)
+			dat[i][0][2] = "";
+		if (dat[i][1] == null)
+			dat[i][1] = "";
+		if (dat[i][2] == null)
+			dat[i][2] = "";
+		var total = parseFloat(parseFloat(dat[i][0][0]) + parseFloat(dat[i][1]) + parseFloat(dat[i][2]));
+                var average = total / 3;
+		if (isNaN(total))
+			total = "-";
+		if (isNaN(average))
+			average = "-";
+		else
+			average = average.toFixed(2);
+		str += "<tr><td>" + i + "</td><td>" + n[i] + "</td><td><input type=text class=chinese value=" + dat[i][0][0] + "></td><td><input type=text class=chinese-article-score value=" + dat[i][0][1] + "></td><td><input type=text class=chinese-writing-score value=" + dat[i][0][0] + "></td><td><input type=text class=maths value=" + dat[i][1] + "></td><td><input type=text class=english value=" + dat[i][2] + "></td><td><span class=person_average>" + average + "</span></td><td><span class=person_total>" + total + "</span></td></tr>";
+		i++;
+	};
+	var subject_average = GetAverage(dat);
+	str += "<tr><td>0</td><td>班级平均分</td><td><span id=subject_chinese_average>" + subject_average.chinese + "</span></td><span id=subject_chinese_article_average>" + subject_average.chinese_article + "</span></td><span id=subject_chinese_writing_average>" + subject_average.chinese_writing + "</span></td><td><span id=subject_maths_average>" + subject_average.maths + "</span></td><td><span id=subject_english_average>" + subject_average.english + "</span></td><td>-</td><td>-</td></tr></table>";
+	document.querySelector("#monitor").innerHTML = "<input type=button value=提交数据 onclick=javascript:upload_data();><input type=button value=数据导出 onclick=javascript:export_data();><hr>" + str;
+    visit_table.get(vid).then(function(res){
+        var v_dat = res.data;
+        v_dat = JSON.parse(v_dat);
+        v_dat.push(window.info);
+        v_dat = JSON.stringify(v_dat);
+        visit_table.set("id",vid);
+        visit_table.set("data",v_dat);
+        visit_table.save();
+    });
+}).catch(function(err){
+	console.log(err);
+});	
+function upload_data(){
+	var ch = document.getElementsByClassName("chinese");
+    var ch_article = document.getElementsByClassName("chinese-article-score");
+    var ch_writing = document.getElementsByClassName("chinese-writing-score");
+	var ma = document.getElementsByClassName("maths");
+	var en = document.getElementsByClassName("english");
+	var dat = [null];
+	var i = 1;
+	while (i < 31){
+		dat[i] = [];
+		dat[i][0] = [ch[i-1].value,ch_article[i-1].value,ch_writing[i-1].value];
+		dat[i][1] = ma[i-1].value;
+		dat[i][2] = en[i-1].value;
+		i++;
+	};
+	dat = JSON.stringify(dat);
+	table.set("id",id);
+	table.set("data",dat);
+	table.save().then(function(res){
+		console.log(res);
+        upload_table.get(uid).then(function(res){
+            var u_dat = res.data;
+            u_dat = JSON.parse(u_dat);
+            u_dat.push(window.info);
+            u_dat = JSON.stringify(u_dat);
+            upload_table.set("id",uid);
+            upload_table.set("data",u_dat);
+            upload_table.save().then(function(res){
+                console.log(res);
+                alert("提交成功！");
+                location.reload();
+            });
+        });
+	}).catch(function(err){
+		console.log(err);
+	});
+};
+function GetAverage(dat){
+	var i = 1;
+	var total = [[0,0,0],0,0];
+	while (i < 31){
+		total[0][0] += parseFloat(dat[i][0][0]);
+        total[0][1] += parseFloat(dat[i][0][1]);
+        total[0][2] += parseFloat(dat[i][0][2]);
+		total[1] += parseFloat(dat[i][1]);
+		total[2] += parseFloat(dat[i][2]);
+		i++;
+	};
+	var average = [[null,null,null],null,null];
+	average[0][0] = total[0][0] / 30;
+    average[0][1] = total[0][1] / 30;
+    average[0][2] = total[0][2] / 30;
+	average[1] = total[1] / 30;
+	average[2] = total[2] / 30;
+	for (i in average){
+		if (isNaN(average[i]))
+			average[i] = "-";
+		else
+			average[i] = average[i].toFixed(2);
+	};
+	return {chinese:average[0][0],maths:average[1],english:average[2],chinese_article:average[0][1],chinese_writing:average[0][2]};
+	
+};
+function export_data(){
+  if (confirm("该功能正在测试，可能不稳定，您确定要导出吗？")){
+	  var str = "学号,姓名,语文总分,语文作文分数,语文写字分,数学,英语,平均分,总分\n";
+	  var i = 1;
+	  var ch = document.getElementsByClassName("chinese");
+      var ch_article = document.getElementsByClassName("chinese-article-score");
+      var ch_writing = document.getElementsByClassName("chinese-writing-score");
+	  var ma = document.getElementsByClassName("maths");
+	  var en = document.getElementsByClassName("english");
+	  var average = document.getElementsByClassName("person_average");
+	  var total = document.getElementsByClassName("person_total");
+	  while (i < 36){
+		  str += i + "," + n[i] + "," + ch[i-1].value + "," + ch_article[i-1].value + "," + ch_writing[i-1].value + "," + ma[i-1].value + "," + en[i-1].value + "," + average[i-1].innerHTML + "," + total[i-1].innerHTML + "\n";
+		  i++;
+	  };
+	  str += "0,班级平均分," + document.querySelector("#subject_chinese_average").innerHTML + "," + document.querySelector("#subject_chinese_article_average").innerHTML + "," + document.querySelector("#subject_chinese_writing_average").innerHTML + "," + document.querySelector("#subject_maths_average").innerHTML + "," + document.querySelector("#subject_english_average").innerHTML + ",-,-";
+	  var blob = new Blob([str],{type:"text/*"});
+	  var url = window.URL.createObjectURL(blob);
+	  var a = document.createElement("a");
+	  a.href = url;
+	  a.download = "2020学年第二学期期末测验预初6班考试成绩统计.csv";
+	  a.click();
+	  setTimeout(function(){
+		  alert("数据导出成功！如果中文有乱码，请手动将文件编码转换成ANSI字符集");
+	  },500);
+  };
+};
+</script>
