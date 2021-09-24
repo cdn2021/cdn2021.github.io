@@ -52,7 +52,7 @@ table.get(id).then(function(res){
 			average = "-";
 		else
 			average = average.toFixed(2);
-		str += "<tr><td>" + i + "</td><td>" + n[i] + "</td><td><input type=text class=chinese value=" + dat[i][0][0] + "></td><td><input type=text class=chinese-article-score value=" + dat[i][0][1] + "></td><td><input type=text class=chinese-writing-score value=" + dat[i][0][0] + "></td><td><input type=text class=maths value=" + dat[i][1] + "></td><td><input type=text class=english value=" + dat[i][2] + "></td><td><span class=person_average>" + average + "</span></td><td><span class=person_total>" + total + "</span></td></tr>";
+		str += "<tr><td>" + i + "</td><td>" + n[i] + "</td><td><input type=text class=chinese value=" + dat[i][0][0] + "></td><td><input type=text class=chinese-article-score value=" + dat[i][0][1] + "></td><td><input type=text class=chinese-writing-score value=" + dat[i][0][2] + "></td><td><input type=text class=maths value=" + dat[i][1] + "></td><td><input type=text class=english value=" + dat[i][2] + "></td><td><span class=person_average>" + average + "</span></td><td><span class=person_total>" + total + "</span></td></tr>";
 		i++;
 	};
 	var subject_average = GetAverage(dat);
@@ -124,7 +124,15 @@ function GetAverage(dat){
     average[0][2] = total[0][2] / 30;
 	average[1] = total[1] / 30;
 	average[2] = total[2] / 30;
-	for (i in average){
+    if (isNaN(average[0][0]))
+        average = average[0][0];
+    if (isNaN(average[0][1]))
+        average = average[0][1];
+    if (isNaN(average[0][2]))
+        average = average[0][2];
+    
+    var i = 1;
+	while (i < average.length)
 		if (isNaN(average[i]))
 			average[i] = "-";
 		else
@@ -153,7 +161,7 @@ function export_data(){
 	  var url = window.URL.createObjectURL(blob);
 	  var a = document.createElement("a");
 	  a.href = url;
-	  a.download = "2020学年第二学期期末测验预初6班考试成绩统计.csv";
+	  a.download = "2021学年第一学期9月份统一作业预初6班分数统计.csv";
 	  a.click();
 	  setTimeout(function(){
 		  alert("数据导出成功！如果中文有乱码，请手动将文件编码转换成ANSI字符集");
