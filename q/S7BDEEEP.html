@@ -132,11 +132,12 @@ function GetAverage(dat){
         average[0][2] = "-";
     
     var i = 1;
-	while (i < average.length)
+	while (i < average.length){
 		if (isNaN(average[i]))
 			average[i] = "-";
 		else
 			average[i] = average[i].toFixed(2);
+        i++;
 	};
 	return {chinese:average[0][0],maths:average[1],english:average[2],chinese_article:average[0][1],chinese_writing:average[0][2]};
 	
